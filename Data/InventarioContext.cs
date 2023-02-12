@@ -15,7 +15,7 @@ public class InventarioContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder option){
         if (!option.IsConfigured){
-            
+            option.UseSqlServer("Server=(local); Database=Inventario;Integrated Security = true");
         }
     }
     protected override void OnModelCreating(ModelBuilder builder){

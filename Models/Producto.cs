@@ -12,6 +12,7 @@ public class Producto
     public int IdContainer { get; set; }
     public double Medida { get; set; }
     public double Precio { get; set; }
+    public string UrlImagen { get; set; }
     public int Existencia { get; set; }
     public EstadoCatalogo Estado { get; set; }
 
