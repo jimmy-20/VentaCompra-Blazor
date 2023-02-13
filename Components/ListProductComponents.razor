@@ -1,5 +1,81 @@
-<h3>@mensaje</h3>
-<h3>Aqui se enlistan los productos</h3>
+<div class="contenedor">
+    <div class="header-contenedor">
+       <div class="header-text">
+            <h2 class="heading-producto">Producto</h2>
+
+            <a href="#">Agregar producto</a>
+       </div>
+
+        <div class="contenedor-campos">
+            <div class="campo">
+                <label for="buscar">Buscar producto</label>
+                <input type="text" id="buscar" placeholder="Busca tu producto">
+            </div>
+        
+            <div class="campo">
+                <label for="categoria">Categoría:</label>
+                <select name="" id="">
+                    <option value="" disabled selected>--Seleccione--</option>
+                    <option value="1">Granos basicos</option>
+                    <option value="2">Limpieza</option>
+                    <option value="3">Articulos del hogar</option>
+                    <option value="mas">Variados</option>
+                    
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-productos">
+        <div class="producto">
+            <img src="https://live.staticflickr.com/3119/3509767891_71a261fd0e_w.jpg " alt="Producto" class="producto__imagen">
+            <div class="producto__contenido">
+                <h3 class="producto__nombre">Producto 1</h3>
+                <p class="producto__descripcion">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eveniet nesciunt hic incidunt
+                    dolorum consequuntur placeat, ad perspiciatis repellat ducimus maiores eaque aliquid velit
+                    inventore suscipit nulla tempora corporis doloribus.
+                </p>
+                <div class="producto__precios">
+                    <p class="producto__precio">$199</p>
+                </div>
+                <button type="button" class="producto__boton">Añadir al carrito</button>
+            </div>
+        </div>
+
+        <div class="producto">
+            <img src="https://live.staticflickr.com/3119/3509767891_71a261fd0e_w.jpg " alt="Producto" class="producto__imagen">
+            <div class="producto__contenido">
+                <h3 class="producto__nombre">Producto 2</h3>
+                <p class="producto__descripcion">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eveniet nesciunt hic incidunt
+                    dolorum consequuntur placeat, ad perspiciatis repellat ducimus maiores eaque aliquid velit
+                    inventore suscipit nulla tempora corporis doloribus.
+                </p>
+                <div class="producto__precios">
+                    <p class="producto__precio">$199</p>
+                </div>
+                <button type="button" class="producto__boton">Añadir al carrito</button>
+            </div>
+        </div>
+
+        <div class="producto">
+            <img src="https://live.staticflickr.com/3119/3509767891_71a261fd0e_w.jpg " alt="Producto" class="producto__imagen">
+            <div class="producto__contenido">
+                <h3 class="producto__nombre">Producto 3</h3>
+                <p class="producto__descripcion">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eveniet nesciunt hic incidunt
+                    dolorum consequuntur placeat, ad perspiciatis repellat ducimus maiores eaque aliquid velit
+                    inventore suscipit nulla tempora corporis doloribus.
+                </p>
+                <div class="producto__precios">
+                    <p class="producto__precio">$199</p>
+                </div>
+                <button type="button" class="producto__boton">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code{
     string mensaje = "Ladron mmwebo";
