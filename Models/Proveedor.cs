@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
 using Inventario.Models.Enums;
 
 namespace Inventario.Models;
 public class Proveedor
 {
+    [Key]
     public int IdProveedor { get; set; }
     public string Nombre { get; set; }
     public string Telefono { get; set; }

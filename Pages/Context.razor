@@ -1,0 +1,56 @@
+@using Inventario.Data
+@using Inventario.Models
+@page "/context"
+@inject InventarioContext Inv
+@using System.Globalization
+
+<h2>La base de datos existe: @flag</h2>
+
+<div class="p-3 mb-2 bg-primary-subtle text-emphasis-primary">
+    <h3>Listado de productos</h3>
+    <p>Productos semillas si no existen datos</p>
+</div>
+
+@if (products == null || products.Count() <= 0){
+    <p>Cargando productos ...</p>
+}else{
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Existencias</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Producto p in products)
+        {
+            <tr>
+                <th>Lorem Category</th>
+                <th>Lorem producto</th>
+                <th>@p.Precio.ToString("C",new CultureInfo("en-Us"))</th>
+                <th>@p.Existencia</th>
+                <th><img src="@p.UrlImagen" alt="" width="200" height="200" /> </th>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+
+@code{
+    bool flag;
+    IEnumerable<Producto> products = new List<Producto>();
+
+    protected override void OnInitialized()
+    {
+        flag = Inv.Database.EnsureCreated();
+        products = GetProductos();
+    }
+
+    private IEnumerable<Producto> GetProductos(){
+        return Inv.TbProducto.AsEnumerable<Producto>();
+    }
+}
