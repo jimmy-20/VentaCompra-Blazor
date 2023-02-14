@@ -22,6 +22,7 @@ public class InventarioContext : DbContext
         builder.Entity<ProductoBase>().HasData(InitProductoBase());
         builder.Entity<ProductoContenido>().HasData(InitProductContent());
         builder.Entity<Producto>().HasData(InitProducts());
+
     }
 
     private IEnumerable<Categoria> InitCategoria(){

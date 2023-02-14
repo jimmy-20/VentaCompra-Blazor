@@ -2,6 +2,7 @@
 @using Inventario.Models
 @page "/context"
 @inject InventarioContext Inv
+@using Microsoft.EntityFrameworkCore
 @using System.Globalization
 
 <h2>La base de datos existe: @flag</h2>
@@ -28,8 +29,8 @@
         @foreach (Producto p in products)
         {
             <tr>
-                <th>Lorem Category</th>
-                <th>Lorem producto</th>
+                <th>@p.ProductoBase.Categoria.Nombre</th>
+                <th>@p.Nombre</th>
                 <th>@p.Precio.ToString("C",new CultureInfo("en-Us"))</th>
                 <th>@p.Existencia</th>
                 <th><img src="@p.UrlImagen" alt="" width="200" height="200" /> </th>
@@ -51,6 +52,6 @@
     }
 
     private IEnumerable<Producto> GetProductos(){
-        return Inv.TbProducto.AsEnumerable<Producto>();
+        return Inv.TbProducto.Include(p => p.ProductoBase).ThenInclude(pb => pb.Categoria).Include(p=> p.ProductoContenido);
     }
 }
