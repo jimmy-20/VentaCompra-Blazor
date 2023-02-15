@@ -1,4 +1,4 @@
-namespace Inventario.Models.Enums;
+namespace InventarioBlazor.Models.Enums;
 
     public enum EstadoCatalogo
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Inventario.Models;
+namespace InventarioBlazor.Models;
 
 public class ProductoBase
 {

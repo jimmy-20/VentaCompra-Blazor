@@ -1,9 +1,8 @@
 @using Inventario.Data
-@using Inventario.Models
+@using InventarioBlazor.Models
 @page "/context"
-@inject InventarioContext Inv
+@inject IDbContextFactory<InventarioContext> Inv
 @using Microsoft.EntityFrameworkCore
-@using System.Globalization
 
 <h2>La base de datos existe: @flag</h2>
 
@@ -12,46 +11,20 @@
     <p>Productos semillas si no existen datos</p>
 </div>
 
-@if (products == null || products.Count() <= 0){
-    <p>Cargando productos ...</p>
-}else{
-<table class="table table-dark table-striped">
-    <thead>
-        <tr>
-            <th>Categoria</th>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Existencias</th>
-            <th>Imagen</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Producto p in products)
-        {
-            <tr>
-                <th>@p.ProductoBase.Categoria.Nombre</th>
-                <th>@p.Nombre</th>
-                <th>@p.Precio.ToString("C",new CultureInfo("en-Us"))</th>
-                <th>@p.Existencia</th>
-                <th><img src="@p.UrlImagen" alt="" width="200" height="200" /> </th>
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (var e in context.Model.GetEntityTypes())
+{
+    <p>@e.Name</p>
 }
-
 
 @code{
     bool flag;
-    IEnumerable<Producto> products = new List<Producto>();
+    InventarioContext context ;
 
     protected override void OnInitialized()
     {
-        flag = Inv.Database.EnsureCreated();
-        products = GetProductos();
+        context = Inv.CreateDbContext();
+        flag = context.Database.IsSqlServer();
     }
 
-    private IEnumerable<Producto> GetProductos(){
-        return Inv.TbProducto.Include(p => p.ProductoBase).ThenInclude(pb => pb.Categoria).Include(p=> p.ProductoContenido);
-    }
+
 }

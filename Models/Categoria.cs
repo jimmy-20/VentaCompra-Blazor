@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Inventario.Models;
+namespace InventarioBlazor.Models;
 
 public class Categoria
 {

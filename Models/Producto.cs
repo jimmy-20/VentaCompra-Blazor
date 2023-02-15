@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Inventario.Models.Enums;
+using InventarioBlazor.Models.Enums;
 
-namespace Inventario.Models;
+namespace InventarioBlazor.Models;
 
 public class Producto
 {

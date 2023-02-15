@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Inventario.Models.Enums;
+using InventarioBlazor.Models.Enums;
 
-namespace Inventario.Models;
+namespace InventarioBlazor.Models;
 public class Proveedor
 {
     [Key]
