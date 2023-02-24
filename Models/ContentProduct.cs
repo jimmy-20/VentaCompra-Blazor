@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models;
 
 [Table("ContentProduct")]
-public class ProductoContenido
+public class ContentProduct
 {
     [Key]
-    public int IdContenido { get; set; }
+    public int IdContent { get; set; }
     [MaxLength(30)]
-    [Required(ErrorMessage ="Ingrese el tipo de presentación del producto")]
-    public string Modelo { get; set; } //Retornable
+    [Required(ErrorMessage ="Ingrese el tipo de presentación del Product")]
+    public string Model { get; set; } //Retornable
     [MaxLength(30)]
     [Required(ErrorMessage ="Falta la unidad de medida(Litro, gramos, etc)")]
-    public string Contenido { get; set; } //Litro por ejemplo
+    public string Content { get; set; } //Litro por ejemplo
 
     //Propiedad de navegacion
-    public List<Producto> Productos { get; set; }
+    public List<Product> Products { get; set; }
 }

@@ -3,29 +3,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models;
 
-[Table("CustomerNature")]
-public class ClienteNatural
+[Table("NatureCustomer")]
+public class NatureCustomer
 {
-    [Key,ForeignKey("Cliente")]
-    public int IdCliente { get; set; }
+    [Key,ForeignKey("Customer")]
+    public int IdCustomer { get; set; }
 
     [MaxLength(50)]
     [Required(ErrorMessage ="Introduzca un nombre")]
-    public string PrimerNombre { get; set; }
+    public string FirstName { get; set; }
 
     [MaxLength(50)]
-    public string SegundoNombre { get; set; }
+    public string SecondName { get; set; }
 
     [MaxLength(50)]
     [Required(ErrorMessage ="Introduzca un apellido")]
-    public string PrimerApellido { get; set; }
+    public string FirstLastName { get; set; }
 
     [MaxLength(50)]
-    public string SegundoApellido { get; set; }
+    public string SecondLastName { get; set; }
 
     [MaxLength(14,ErrorMessage ="La cédula debe tener 14 carácteres")]
     [Required(ErrorMessage ="Falta el número de identidad")]
-    public string Cedula { get; set; }        
+    public string Identification { get; set; }        
 
-    public virtual Cliente Cliente { get; set; }
+    public virtual Customer Customer { get; set; }
 }
