@@ -16,6 +16,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDbContext<InventarioContext>();
 
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
+builder.Services.AddScoped<IProductServices,ProductServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

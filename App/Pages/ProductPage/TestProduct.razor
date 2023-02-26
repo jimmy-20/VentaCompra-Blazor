@@ -1,5 +1,5 @@
 @page "/test"
-@inject IGenericServices<Product> IServicesProduct
+@inject IProductServices IProductServices
 
 <h1>Lista de productos</h1>
 
@@ -7,7 +7,8 @@
     <thead>
         <tr>
             <th>Producto</th>
-            <th></th>
+            <th>Precio</th>
+            <th>Imagen</th>
         </tr>
     </thead>
     <tbody>
@@ -15,8 +16,9 @@
             @foreach (var p in products)
             {
                 <tr>
-                    <td>@p.Nombre</td>
-                 <td>@p.Price</td>
+                    <td>@p.IdProduct</td>
+                    <td>@p.Price</td>
+                    <td><img src="@p.UrlImage" alt="" width="350" height="350"></td>
                 </tr>
             }
         }else{
@@ -30,6 +32,6 @@
     private IEnumerable<Product> products = new List<Product>();
     protected override async Task OnInitializedAsync()
     {
-        products = await IServicesProduct.GetAll();
+        products = await IProductServices.GetAll();
     }
 }
