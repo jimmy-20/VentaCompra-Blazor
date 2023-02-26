@@ -4,31 +4,12 @@ using Models;
 
 namespace Data.Repository;
 
-public class ProductRepository : IProductRepository
+public class ProductRepository : GenericRepository<Product>, IProductRepository
 {
     private readonly DbContext _context;
-    public ProductRepository(InventarioContext context)
-    {
-        _context = context;   
-    }
-    public Task AddItem(Product t)
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<Product> FindItem(int id)
+    public ProductRepository(InventarioContext context) : base(context)
     {
-        throw new NotImplementedException();
-    }
-
-    public async Task<List<Product>> GetAll()
-    {
-        return await _context.Set<Product>().ToListAsync();
-    }
-
-    public Task UpdateItem(Product t)
-    {
-        throw new NotImplementedException();
     }
 }
 
