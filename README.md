@@ -19,7 +19,6 @@ Felicidades, ya puedes generar la base de datos desde la capa 'Data' usando Enti
 ## Arquitectura por capas ℹ
 <ul>
   <li>App: Contiene las vistas y componentes</li>
-  <li>Controller: Administra y gestiona las solicitudes del cliente</li>
   <li>Services: Capa intermediaria encargada de verificar la validez de los datos</li>
   <li>Data: Es la encargada de la persistencia de la base de datos</li>
   <li>Models: Contiene el modelado de las clases que toman forma de tabla con EF</li>
