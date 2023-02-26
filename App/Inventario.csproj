@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Controllers/Controllers.csproj">
+    <ProjectReference Include="../Services/Services.csproj">
       <Name>Controllers</Name>
     </ProjectReference>
 

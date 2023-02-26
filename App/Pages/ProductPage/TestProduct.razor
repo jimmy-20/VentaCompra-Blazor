@@ -1,0 +1,37 @@
+@page "/test"
+@inject IProductServices IProductServices
+
+<h1>Lista de productos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(products != null){
+            @foreach (var p in products)
+            {
+                <tr>
+                    <td>@p.IdProduct</td>
+                    <td>@p.Price</td>
+                    <td><img src="@p.UrlImage" alt="" width="350" height="350"></td>
+                </tr>
+            }
+        }else{
+            <p>Cargando productos ...</p>
+        }
+        
+    </tbody>
+</table>
+
+@code{
+    private IEnumerable<Product> products = new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        products = await IProductServices.GetAll();
+    }
+}

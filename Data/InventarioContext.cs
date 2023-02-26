@@ -15,7 +15,7 @@ public class InventarioContext : DbContext
     public DbSet<LegalCustomer> TbLegalCustomer { get; set; }
     public DbSet<NatureCustomer> TbNatureCustomer { get; set; }
 
-    // public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
+    public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
 
     protected override void OnConfiguring(DbContextOptionsBuilder option){
         if (!option.IsConfigured){
