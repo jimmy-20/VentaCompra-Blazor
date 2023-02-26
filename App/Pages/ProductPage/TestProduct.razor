@@ -1,0 +1,35 @@
+@page "/test"
+@inject IGenericServices<Product> IServicesProduct
+
+<h1>Lista de productos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(products != null){
+            @foreach (var p in products)
+            {
+                <tr>
+                    <td>@p.Nombre</td>
+                 <td>@p.Price</td>
+                </tr>
+            }
+        }else{
+            <p>Cargando productos ...</p>
+        }
+        
+    </tbody>
+</table>
+
+@code{
+    private IEnumerable<Product> products = new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        products = await IServicesProduct.GetAll();
+    }
+}

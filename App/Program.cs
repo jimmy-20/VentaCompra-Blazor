@@ -1,6 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Inventario.Data;
+using Data;
+using Services;
+using Services.Interfaces;
+using Models;
+using Data.Interfaces;
+using Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<InventarioContext>();
 
 var app = builder.Build();
 
