@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20230228182424_Agregando Detalles de las tablas ordenes y compras")]
+    partial class AgregandoDetallesdelastablasordenesycompras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,41 +272,41 @@ namespace Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CatalogState")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstLastName")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Identification")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observation")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecondLastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SecondName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -380,8 +383,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdOrder", "IdProduct");
-
-                    b.HasIndex("IdProduct");
 
                     b.ToTable("OrderDetail");
 
@@ -596,8 +597,6 @@ namespace Data.Migrations
 
                     b.HasKey("IdPurchase", "IdProduct");
 
-                    b.HasIndex("IdProduct");
-
                     b.ToTable("PurchaseDetail");
 
                     b.UseTpcMappingStrategy();
@@ -690,25 +689,6 @@ namespace Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Models.Order_Detail", b =>
-                {
-                    b.HasOne("Models.Order", "Order")
-                        .WithMany("Order_Details")
-                        .HasForeignKey("IdOrder")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Models.Product", "Product")
-                        .WithMany("Order_Details")
-                        .HasForeignKey("IdProduct")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.HasOne("Models.BaseProduct", "BaseProduct")
@@ -737,25 +717,6 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Provider");
-                });
-
-            modelBuilder.Entity("Models.Purchase_Detail", b =>
-                {
-                    b.HasOne("Models.Product", "Product")
-                        .WithMany("Purchase_Details")
-                        .HasForeignKey("IdProduct")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Models.Purchase", "Purchase")
-                        .WithMany("Purchase_Details")
-                        .HasForeignKey("IdPurchase")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Purchase");
                 });
 
             modelBuilder.Entity("Models.LegalCustomer", b =>
@@ -804,26 +765,9 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Models.Order", b =>
-                {
-                    b.Navigation("Order_Details");
-                });
-
-            modelBuilder.Entity("Models.Product", b =>
-                {
-                    b.Navigation("Order_Details");
-
-                    b.Navigation("Purchase_Details");
-                });
-
             modelBuilder.Entity("Models.Provider", b =>
                 {
                     b.Navigation("BaseProducts");
-                });
-
-            modelBuilder.Entity("Models.Purchase", b =>
-                {
-                    b.Navigation("Purchase_Details");
                 });
 #pragma warning restore 612, 618
         }

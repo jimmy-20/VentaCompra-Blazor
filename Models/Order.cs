@@ -13,4 +13,5 @@ public class Order : Transaction
 
     public virtual Customer Customer { get; set; }
     public virtual Employee Employee { get; set; }
+    public virtual List<Order_Detail> Order_Details { get; set; }
 }

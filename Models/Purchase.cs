@@ -9,5 +9,7 @@ public class Purchase : Transaction
     [ForeignKey("Provider")]
     public int IdProvider { get; set; }
     public PurchaseState PurchaseState { get; set; } = PurchaseState.Registrado;
+
     public virtual Provider Provider { get; set; }
+    public virtual List<Purchase_Detail> Purchase_Details {get;set;}
 }

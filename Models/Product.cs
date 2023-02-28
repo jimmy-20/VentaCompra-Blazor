@@ -31,6 +31,8 @@ public class Product
     //Propiedades de navegacion
     public BaseProduct BaseProduct { get; set; }
     public ContentProduct ContentProduct { get; set; }
+    public virtual List<Purchase_Detail> Purchase_Details { get; set; }
+    public virtual List<Order_Detail> Order_Details { get; set; }
 
     [NotMapped]
     public string Nombre{
