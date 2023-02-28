@@ -15,7 +15,7 @@ public class InventarioContext : DbContext
     public DbSet<LegalCustomer> TbLegalCustomer { get; set; }
     public DbSet<NatureCustomer> TbNatureCustomer { get; set; }
 
-    public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
+    // public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
 
     protected override void OnConfiguring(DbContextOptionsBuilder option){
         if (!option.IsConfigured){
@@ -36,6 +36,17 @@ public class InventarioContext : DbContext
         builder.Entity<NatureCustomer>().Property(p => p.Identification).HasColumnType("char");
         builder.Entity<LegalCustomer>().Property(p => p.Ruc).HasColumnType("char");
         builder.Entity<Provider>().Property(p => p.Ruc).HasColumnType("char");
+        #endregion       
+
+        #region relations_ship1:1
+        builder.Entity<Customer>().HasOne(c => c.LegalCustomer).WithOne(c => c.Customer).HasForeignKey<LegalCustomer>(c => c.IdCustomer);
+        builder.Entity<Customer>().HasOne(c => c.NatureCustomer).WithOne(c => c.Customer).HasForeignKey<NatureCustomer>(c => c.IdCustomer);
+        #endregion
+
+        #region Mapping
+        builder.Entity<Employee>().UseTpcMappingStrategy();
+        builder.Entity<Order>().UseTpcMappingStrategy();
+        builder.Entity<Purchase>().UseTpcMappingStrategy();
         #endregion
 
         #region Seed_Data

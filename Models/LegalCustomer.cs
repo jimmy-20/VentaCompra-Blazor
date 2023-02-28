@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models;
 [Table("LegalCustomer")]
-public class LegalCustomer
+public class LegalCustomer : Customer
 {
-    [Key,ForeignKey("Customer")]
-    public int IdCustomer { get; set; }
-
     [MaxLength(100)]
     [Required(ErrorMessage ="Falta el nombre del Customer")]
     public string Name { get; set; }
@@ -16,5 +13,6 @@ public class LegalCustomer
     [Required(ErrorMessage ="Falta el N° Ruc")]
     public string Ruc { get; set; }
 
+    [Required]
     public virtual Customer Customer {get;set;}
 }

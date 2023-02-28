@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20230228052636_Configurando Clientes por Tpt y agregando empleados con TPC")]
+    partial class ConfigurandoClientesporTptyagregandoempleadosconTPC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,8 +283,7 @@ namespace Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Identification")
                         .IsRequired()
@@ -297,13 +299,11 @@ namespace Data.Migrations
 
                     b.Property<string>("SecondLastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecondName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -349,10 +349,6 @@ namespace Data.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdCustomer");
-
-                    b.HasIndex("IdEmployee");
 
                     b.ToTable("Order");
 
@@ -538,8 +534,6 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProvider");
-
                     b.ToTable("Purchase");
 
                     b.UseTpcMappingStrategy();
@@ -613,25 +607,6 @@ namespace Data.Migrations
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Models.Order", b =>
-                {
-                    b.HasOne("Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("IdCustomer")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("IdEmployee")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.HasOne("Models.BaseProduct", "BaseProduct")
@@ -649,17 +624,6 @@ namespace Data.Migrations
                     b.Navigation("BaseProduct");
 
                     b.Navigation("ContentProduct");
-                });
-
-            modelBuilder.Entity("Models.Purchase", b =>
-                {
-                    b.HasOne("Models.Provider", "Provider")
-                        .WithMany()
-                        .HasForeignKey("IdProvider")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("Models.LegalCustomer", b =>

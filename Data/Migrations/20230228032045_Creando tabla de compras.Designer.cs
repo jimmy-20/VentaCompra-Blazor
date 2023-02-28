@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20230228032045_Creando tabla de compras")]
+    partial class Creandotabladecompras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,10 +24,6 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.HasSequence("EmployeeSequence");
-
-            modelBuilder.HasSequence("OrderSequence");
 
             modelBuilder.HasSequence("PurchaseSequence");
 
@@ -258,107 +257,6 @@ namespace Data.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("Models.Employee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR [EmployeeSequence]");
-
-                    SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CatalogState")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstLastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Identification")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Observation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecondLastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SecondName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employee");
-
-                    b.UseTpcMappingStrategy();
-                });
-
-            modelBuilder.Entity("Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR [OrderSequence]");
-
-                    SqlServerPropertyBuilderExtensions.UseSequence(b.Property<int>("Id"));
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<int>("IdCustomer")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Iva")
-                        .HasColumnType("float");
-
-                    b.Property<int>("MovementType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderState")
-                        .HasColumnType("int");
-
-                    b.Property<double>("SubAmount")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdCustomer");
-
-                    b.HasIndex("IdEmployee");
-
-                    b.ToTable("Order");
-
-                    b.UseTpcMappingStrategy();
-                });
-
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.Property<int>("IdProduct")
@@ -538,8 +436,6 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProvider");
-
                     b.ToTable("Purchase");
 
                     b.UseTpcMappingStrategy();
@@ -613,25 +509,6 @@ namespace Data.Migrations
                     b.Navigation("Provider");
                 });
 
-            modelBuilder.Entity("Models.Order", b =>
-                {
-                    b.HasOne("Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("IdCustomer")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("IdEmployee")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.HasOne("Models.BaseProduct", "BaseProduct")
@@ -649,17 +526,6 @@ namespace Data.Migrations
                     b.Navigation("BaseProduct");
 
                     b.Navigation("ContentProduct");
-                });
-
-            modelBuilder.Entity("Models.Purchase", b =>
-                {
-                    b.HasOne("Models.Provider", "Provider")
-                        .WithMany()
-                        .HasForeignKey("IdProvider")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Provider");
                 });
 
             modelBuilder.Entity("Models.LegalCustomer", b =>
