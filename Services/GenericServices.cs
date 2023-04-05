@@ -13,14 +13,14 @@ public abstract class GenericServices<TEntity> : IGenericServices<TEntity>
         _repository = repository;
     }
 
-    public Task AddItem(TEntity t)
+    public async Task AddItem(TEntity t)
     {
-        throw new NotImplementedException();
+        await _repository.AddItem(t);
     }
 
-    public Task<TEntity> FindItem(int id)
+    public async Task<TEntity> FindItem(int id)
     {
-        throw new NotImplementedException();
+        return await _repository.FindItem(id);
     }
 
     public async Task<List<TEntity>> GetAll()
@@ -28,9 +28,9 @@ public abstract class GenericServices<TEntity> : IGenericServices<TEntity>
         return await _repository.GetAll();
     }
 
-    public Task UpdateItem(TEntity t)
+    public async Task UpdateItem(TEntity t)
     {
-        throw new NotImplementedException();
+        await _repository.UpdateItem(t);
     }
 }
 
