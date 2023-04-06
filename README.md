@@ -1,8 +1,8 @@
 # IOR System
-IOR System(Sistema de registro de entradas y salidas) es un software elaborado a escala pequeña-mediana, que abarca solución a las diferentes entradas y salidas de productos, orientado al manejo del inventario. Realizado como objetivo principal poner en práctica los conocimientos adquiridos en frontend y backend.
+FAPS System(Sistema de facturación de compra y venta) es un software elaborado a escala pequeña-mediana, que abarca solución a las diferentes operaciones de compra y venta de productos, orientado a la facturación de estos procesos. Realizado como objetivo principal poner en práctica los conocimientos adquiridos en frontend y backend.
 
 ## Sobre el proyecto ⌨
-Es desarrollado por 2 personas con conocimientos orientado más al backend y al frontend, con el reto de desarrollar un sistema capaz de llevar el control y registro de entradas y salidas de un inventario. Con propósitos de práctica para complementación de tecnologias frontend y tecnologias backend. Elaborado con una arquitectura de capas que distribuye las funcionalidades por medio de módulos.
+Es desarrollado por 2 personas con conocimientos orientado más al backend y al frontend, con el reto de desarrollar un sistema capaz de llevar el control y registro de compras y ventas. Con propósitos de práctica para complementación de tecnologias frontend y tecnologias backend. Elaborado con una arquitectura de capas que distribuye las funcionalidades por medio de módulos.
 
 ## Cómo utilizar 🤔
 1. Clonar el repositorio en tu máquina local
