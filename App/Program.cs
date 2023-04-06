@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Inventario.Data;
 using Data;
 using Services;
-using Services.Interfaces;
-using Models;
 using Data.Interfaces;
 using Data.Repository;
 

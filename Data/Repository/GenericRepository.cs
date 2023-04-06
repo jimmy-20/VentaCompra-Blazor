@@ -13,20 +13,17 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
     }
     public async Task AddItem(TEntity t)
     {
-        throw new NotImplementedException();
+        await _context.Set<TEntity>().AddAsync(t);
+        await _context.SaveChangesAsync();
     }
 
-    public async Task<TEntity> FindItem(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<TEntity>? FindItem(int id) => await _context.Set<TEntity>().FindAsync(id);
 
-    public virtual async Task<List<TEntity>> GetAll() {
-        return await _context.Set<TEntity>().ToListAsync();
-    }
+    public virtual async Task<List<TEntity>> GetAll() => await _context.Set<TEntity>().ToListAsync();
 
     public async Task UpdateItem(TEntity t)
     {
-        throw new NotImplementedException();
+        _context.Set<TEntity>().Update(t);
+        await _context.SaveChangesAsync();
     }
 }

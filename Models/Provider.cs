@@ -25,6 +25,7 @@ public class Provider
     [MaxLength(100)]
     public string? Email { get; set; }
     public CatalogState State { get; set; } = CatalogState.Register;
+    public DateTime DateUpdate { get; set; } = DateTime.Now;
 
     //Propiedad de navegacion
     public List<BaseProduct> BaseProducts { get; set; }

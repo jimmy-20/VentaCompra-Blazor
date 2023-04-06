@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20230228182424_Agregando Detalles de las tablas ordenes y compras")]
+    partial class AgregandoDetallesdelastablasordenesycompras
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,9 +244,6 @@ namespace Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("varchar");
 
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -253,9 +253,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("varchar");
-
-                    b.Property<int>("State")
-                        .HasColumnType("int");
 
                     b.HasKey("IdCustomer");
 
@@ -275,44 +272,41 @@ namespace Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CatalogState")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FirstLastName")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Identification")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observation")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecondLastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("SecondName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -390,8 +384,6 @@ namespace Data.Migrations
 
                     b.HasKey("IdOrder", "IdProduct");
 
-                    b.HasIndex("IdProduct");
-
                     b.ToTable("OrderDetail");
 
                     b.UseTpcMappingStrategy();
@@ -404,9 +396,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduct"));
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdBase")
                         .HasColumnType("int");
@@ -443,7 +432,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 1,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1124),
                             IdBase = 1,
                             IdContent = 2,
                             Price = 38.0,
@@ -455,7 +443,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 2,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1129),
                             IdBase = 2,
                             IdContent = 2,
                             Price = 39.0,
@@ -467,7 +454,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 3,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1131),
                             IdBase = 3,
                             IdContent = 2,
                             Price = 39.0,
@@ -490,9 +476,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar");
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -525,7 +508,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 1,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1000),
                             Name = "Coca Cola Company",
                             Phone = "22113355",
                             Ruc = "J0312010201321",
@@ -535,7 +517,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 2,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1015),
                             Name = "Pepsi",
                             Phone = "88990123",
                             Ruc = "J0312010201322",
@@ -545,7 +526,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 3,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1017),
                             Name = "Dell",
                             Phone = "78901010",
                             Ruc = "J0312010201323",
@@ -616,8 +596,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdPurchase", "IdProduct");
-
-                    b.HasIndex("IdProduct");
 
                     b.ToTable("PurchaseDetail");
 
@@ -711,25 +689,6 @@ namespace Data.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Models.Order_Detail", b =>
-                {
-                    b.HasOne("Models.Order", "Order")
-                        .WithMany("Order_Details")
-                        .HasForeignKey("IdOrder")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Models.Product", "Product")
-                        .WithMany("Order_Details")
-                        .HasForeignKey("IdProduct")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.HasOne("Models.BaseProduct", "BaseProduct")
@@ -758,25 +717,6 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Provider");
-                });
-
-            modelBuilder.Entity("Models.Purchase_Detail", b =>
-                {
-                    b.HasOne("Models.Product", "Product")
-                        .WithMany("Purchase_Details")
-                        .HasForeignKey("IdProduct")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Models.Purchase", "Purchase")
-                        .WithMany("Purchase_Details")
-                        .HasForeignKey("IdPurchase")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Purchase");
                 });
 
             modelBuilder.Entity("Models.LegalCustomer", b =>
@@ -825,26 +765,9 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Models.Order", b =>
-                {
-                    b.Navigation("Order_Details");
-                });
-
-            modelBuilder.Entity("Models.Product", b =>
-                {
-                    b.Navigation("Order_Details");
-
-                    b.Navigation("Purchase_Details");
-                });
-
             modelBuilder.Entity("Models.Provider", b =>
                 {
                     b.Navigation("BaseProducts");
-                });
-
-            modelBuilder.Entity("Models.Purchase", b =>
-                {
-                    b.Navigation("Purchase_Details");
                 });
 #pragma warning restore 612, 618
         }

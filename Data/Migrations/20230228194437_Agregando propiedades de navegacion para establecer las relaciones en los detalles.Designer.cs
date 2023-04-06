@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20230228194437_Agregando propiedades de navegacion para establecer las relaciones en los detalles")]
+    partial class Agregandopropiedadesdenavegacionparaestablecerlasrelacionesenlosdetalles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,9 +244,6 @@ namespace Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("varchar");
 
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -253,9 +253,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("varchar");
-
-                    b.Property<int>("State")
-                        .HasColumnType("int");
 
                     b.HasKey("IdCustomer");
 
@@ -279,9 +276,6 @@ namespace Data.Migrations
 
                     b.Property<int>("CatalogState")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstLastName")
                         .IsRequired()
@@ -405,9 +399,6 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduct"));
 
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("IdBase")
                         .HasColumnType("int");
 
@@ -443,7 +434,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 1,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1124),
                             IdBase = 1,
                             IdContent = 2,
                             Price = 38.0,
@@ -455,7 +445,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 2,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1129),
                             IdBase = 2,
                             IdContent = 2,
                             Price = 39.0,
@@ -467,7 +456,6 @@ namespace Data.Migrations
                         new
                         {
                             IdProduct = 3,
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1131),
                             IdBase = 3,
                             IdContent = 2,
                             Price = 39.0,
@@ -490,9 +478,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar");
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -525,7 +510,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 1,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1000),
                             Name = "Coca Cola Company",
                             Phone = "22113355",
                             Ruc = "J0312010201321",
@@ -535,7 +519,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 2,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1015),
                             Name = "Pepsi",
                             Phone = "88990123",
                             Ruc = "J0312010201322",
@@ -545,7 +528,6 @@ namespace Data.Migrations
                         {
                             IdProvider = 3,
                             Address = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-                            DateUpdate = new DateTime(2023, 4, 5, 18, 42, 7, 215, DateTimeKind.Local).AddTicks(1017),
                             Name = "Dell",
                             Phone = "78901010",
                             Ruc = "J0312010201323",

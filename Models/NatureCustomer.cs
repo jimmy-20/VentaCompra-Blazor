@@ -4,11 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models;
 
 [Table("NatureCustomer")]
-public class NatureCustomer
+public class NatureCustomer : Customer
 {
-    [Key,ForeignKey("Customer")]
-    public int IdCustomer { get; set; }
-
     [MaxLength(50)]
     [Required(ErrorMessage ="Introduzca un nombre")]
     public string FirstName { get; set; }
@@ -25,7 +22,9 @@ public class NatureCustomer
 
     [MaxLength(14,ErrorMessage ="La cédula debe tener 14 carácteres")]
     [Required(ErrorMessage ="Falta el número de identidad")]
-    public string Identification { get; set; }        
+    [StringLength(14)]
+    public string Identification { get; set; }
 
+    [Required]
     public virtual Customer Customer { get; set; }
 }

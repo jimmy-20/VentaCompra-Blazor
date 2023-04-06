@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Enums;
 
 namespace Models;
 
 [Table("Customer")]
-public class Customer{
+public abstract class Customer{
     [Key]
     public int IdCustomer { get; set; }
 
@@ -19,6 +20,10 @@ public class Customer{
     [MaxLength(50)]
     public string Email { get; set; }
 
-    public virtual NatureCustomer Natural { get; set; }
-    public virtual LegalCustomer Juridico { get; set; }
+    public CatalogState State { get; set; } = CatalogState.Register;
+    public DateTime DateUpdate { get; set; } = DateTime.Now;
+
+
+    public virtual NatureCustomer NatureCustomer { get; set; }
+    public virtual LegalCustomer LegalCustomer { get; set; }
 }

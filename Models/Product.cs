@@ -27,10 +27,13 @@ public class Product
     public int Quantity { get; set; } = 0;
     
     public CatalogState State { get; set; } = CatalogState.Register;
+    public DateTime DateUpdate { get; set; } = DateTime.Now;
 
     //Propiedades de navegacion
     public BaseProduct BaseProduct { get; set; }
     public ContentProduct ContentProduct { get; set; }
+    public virtual List<Purchase_Detail> Purchase_Details { get; set; }
+    public virtual List<Order_Detail> Order_Details { get; set; }
 
     [NotMapped]
     public string Nombre{

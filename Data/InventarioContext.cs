@@ -15,7 +15,7 @@ public class InventarioContext : DbContext
     public DbSet<LegalCustomer> TbLegalCustomer { get; set; }
     public DbSet<NatureCustomer> TbNatureCustomer { get; set; }
 
-    public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
+    // public InventarioContext(DbContextOptions<InventarioContext> options) :base(options){}
 
     protected override void OnConfiguring(DbContextOptionsBuilder option){
         if (!option.IsConfigured){
@@ -36,7 +36,35 @@ public class InventarioContext : DbContext
         builder.Entity<NatureCustomer>().Property(p => p.Identification).HasColumnType("char");
         builder.Entity<LegalCustomer>().Property(p => p.Ruc).HasColumnType("char");
         builder.Entity<Provider>().Property(p => p.Ruc).HasColumnType("char");
+
+        builder.Entity<Purchase_Detail>(pd =>{
+            pd.HasKey(k => new {k.IdPurchase,k.IdProduct});
+            pd.HasOne(p => p.Purchase).WithMany(p => p.Purchase_Details).HasForeignKey(dp => dp.IdPurchase).OnDelete(DeleteBehavior.NoAction);
+            pd.HasOne(p => p.Product).WithMany(p => p.Purchase_Details).HasForeignKey(pd => pd.IdProduct).OnDelete(DeleteBehavior.NoAction);
+        });
+
+        builder.Entity<Order_Detail>(od =>{
+            od.HasKey(k => new{k.IdOrder,k.IdProduct});
+            od.HasOne(d => d.Order).WithMany(o => o.Order_Details).HasForeignKey(od => od.IdOrder).OnDelete(DeleteBehavior.NoAction);
+            od.HasOne(d => d.Product).WithMany(p => p.Order_Details).HasForeignKey(od => od.IdProduct).OnDelete(DeleteBehavior.NoAction);
+        });
+        #endregion       
+
+        #region relations_ship
+        builder.Entity<Customer>().HasOne(c => c.LegalCustomer).WithOne(c => c.Customer).HasForeignKey<LegalCustomer>(c => c.IdCustomer);
+        builder.Entity<Customer>().HasOne(c => c.NatureCustomer).WithOne(c => c.Customer).HasForeignKey<NatureCustomer>(c => c.IdCustomer);
         #endregion
+
+        #region Mapping
+        builder.Entity<Employee>().UseTpcMappingStrategy();
+        builder.Entity<Order>().UseTpcMappingStrategy();
+        builder.Entity<Purchase>().UseTpcMappingStrategy();
+        builder.Entity<Order_Detail>().UseTpcMappingStrategy();
+        builder.Entity<Purchase_Detail>().UseTpcMappingStrategy();
+        #endregion
+
+        builder.Entity<Order_Detail>().HasKey(o => new{o.IdOrder,o.IdProduct});
+        builder.Entity<Purchase_Detail>().HasKey(p => new{p.IdPurchase,p.IdProduct});
 
         #region Seed_Data
         builder.Entity<Category>().HasData(InitCategory());
