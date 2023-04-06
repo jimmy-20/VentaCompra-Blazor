@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models;
 
 [Table("PurchaseDetail")]
-public class Purchase_Detail : Movement_Detail
+public class Purchase_Detail : Transaction_Detail
 {
     public int IdPurchase { get; set; }
     public int IdProduct { get; set; }

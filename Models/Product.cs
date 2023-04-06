@@ -27,6 +27,7 @@ public class Product
     public int Quantity { get; set; } = 0;
     
     public CatalogState State { get; set; } = CatalogState.Register;
+    public DateTime DateUpdate { get; set; } = DateTime.Now;
 
     //Propiedades de navegacion
     public BaseProduct BaseProduct { get; set; }

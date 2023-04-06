@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Enums;
 
 namespace Models;
 
@@ -18,6 +19,10 @@ public abstract class Customer{
 
     [MaxLength(50)]
     public string Email { get; set; }
+
+    public CatalogState State { get; set; } = CatalogState.Register;
+    public DateTime DateUpdate { get; set; } = DateTime.Now;
+
 
     public virtual NatureCustomer NatureCustomer { get; set; }
     public virtual LegalCustomer LegalCustomer { get; set; }
