@@ -33,5 +33,6 @@
     protected override async Task OnInitializedAsync()
     {
         products = await IProductServices.GetAll();
+        
     }
 }
